@@ -28,5 +28,12 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1.Lib
             }
             return mtrx;
         }
+
+        public int TimeOfWork(string open, string close)
+        {
+            int minsOpen = Convert.ToInt32(open.Split(':')[0]) * 60 + Convert.ToInt32(open.Split(':')[1]);
+            int minsClose = Convert.ToInt32(close.Split(':')[0]) * 60 + Convert.ToInt32(close.Split(':')[1]);
+            return minsClose - minsOpen;
+        }
     }
 }

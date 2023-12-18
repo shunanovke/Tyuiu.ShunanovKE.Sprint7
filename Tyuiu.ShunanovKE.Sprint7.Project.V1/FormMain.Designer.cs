@@ -29,9 +29,9 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panelUp_SKE = new System.Windows.Forms.Panel();
             this.buttonAboutProgram_SKE = new System.Windows.Forms.Button();
             this.buttonSaveFile_SKE = new System.Windows.Forms.Button();
@@ -39,7 +39,6 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             this.buttonInfo_SKE = new System.Windows.Forms.Button();
             this.panelFile_SKE = new System.Windows.Forms.Panel();
             this.groupBoxFile_SKE = new System.Windows.Forms.GroupBox();
-            this.dataGridViewFile_SKE = new System.Windows.Forms.DataGridView();
             this.panelOptions_SKE = new System.Windows.Forms.Panel();
             this.groupBoxStat_SKE = new System.Windows.Forms.GroupBox();
             this.labelStatCnt_SKE = new System.Windows.Forms.Label();
@@ -84,10 +83,11 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             this.textBoxStatAverageRate_SKE = new System.Windows.Forms.TextBox();
             this.textBoxStatTimeOpen_SKE = new System.Windows.Forms.TextBox();
             this.textBoxStatTimeClose_SKE = new System.Windows.Forms.TextBox();
+            this.dataGridViewFile_SKE = new System.Windows.Forms.DataGridView();
+            this.openFileDialogFile_SKE = new System.Windows.Forms.OpenFileDialog();
             this.panelUp_SKE.SuspendLayout();
             this.panelFile_SKE.SuspendLayout();
             this.groupBoxFile_SKE.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFile_SKE)).BeginInit();
             this.panelOptions_SKE.SuspendLayout();
             this.groupBoxStat_SKE.SuspendLayout();
             this.groupBoxSort_SKE.SuspendLayout();
@@ -96,6 +96,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             this.panelGraph_SKE.SuspendLayout();
             this.groupBoxGraph_SKE.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartGraph_SKE)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFile_SKE)).BeginInit();
             this.SuspendLayout();
             // 
             // panelUp_SKE
@@ -136,6 +137,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             this.buttonOpenFile_SKE.TabIndex = 1;
             this.buttonOpenFile_SKE.Text = "buttonOpenFile";
             this.buttonOpenFile_SKE.UseVisualStyleBackColor = true;
+            this.buttonOpenFile_SKE.Click += new System.EventHandler(this.buttonOpenFile_SKE_Click);
             // 
             // buttonInfo_SKE
             // 
@@ -166,15 +168,6 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             this.groupBoxFile_SKE.TabIndex = 0;
             this.groupBoxFile_SKE.TabStop = false;
             this.groupBoxFile_SKE.Text = "Авторемонтные мастерские";
-            // 
-            // dataGridViewFile_SKE
-            // 
-            this.dataGridViewFile_SKE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewFile_SKE.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewFile_SKE.Location = new System.Drawing.Point(3, 16);
-            this.dataGridViewFile_SKE.Name = "dataGridViewFile_SKE";
-            this.dataGridViewFile_SKE.Size = new System.Drawing.Size(943, 218);
-            this.dataGridViewFile_SKE.TabIndex = 0;
             // 
             // panelOptions_SKE
             // 
@@ -514,17 +507,18 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             // 
             // chartGraph_SKE
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartGraph_SKE.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            this.chartGraph_SKE.ChartAreas.Add(chartArea2);
             this.chartGraph_SKE.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chartGraph_SKE.Legends.Add(legend1);
+            legend2.Name = "Legend1";
+            this.chartGraph_SKE.Legends.Add(legend2);
             this.chartGraph_SKE.Location = new System.Drawing.Point(3, 16);
             this.chartGraph_SKE.Name = "chartGraph_SKE";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartGraph_SKE.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.IsVisibleInLegend = false;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartGraph_SKE.Series.Add(series2);
             this.chartGraph_SKE.Size = new System.Drawing.Size(380, 341);
             this.chartGraph_SKE.TabIndex = 0;
             this.chartGraph_SKE.Text = "chart1";
@@ -569,6 +563,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             // 
             this.textBoxStatCnt_SKE.Location = new System.Drawing.Point(144, 16);
             this.textBoxStatCnt_SKE.Name = "textBoxStatCnt_SKE";
+            this.textBoxStatCnt_SKE.ReadOnly = true;
             this.textBoxStatCnt_SKE.Size = new System.Drawing.Size(87, 20);
             this.textBoxStatCnt_SKE.TabIndex = 1;
             // 
@@ -576,6 +571,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             // 
             this.textBoxStatMaxRate_SKE.Location = new System.Drawing.Point(144, 45);
             this.textBoxStatMaxRate_SKE.Name = "textBoxStatMaxRate_SKE";
+            this.textBoxStatMaxRate_SKE.ReadOnly = true;
             this.textBoxStatMaxRate_SKE.Size = new System.Drawing.Size(87, 20);
             this.textBoxStatMaxRate_SKE.TabIndex = 1;
             // 
@@ -583,6 +579,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             // 
             this.textBoxStatMinRate_SKE.Location = new System.Drawing.Point(144, 74);
             this.textBoxStatMinRate_SKE.Name = "textBoxStatMinRate_SKE";
+            this.textBoxStatMinRate_SKE.ReadOnly = true;
             this.textBoxStatMinRate_SKE.Size = new System.Drawing.Size(87, 20);
             this.textBoxStatMinRate_SKE.TabIndex = 1;
             // 
@@ -590,6 +587,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             // 
             this.textBoxStatAverageRate_SKE.Location = new System.Drawing.Point(144, 103);
             this.textBoxStatAverageRate_SKE.Name = "textBoxStatAverageRate_SKE";
+            this.textBoxStatAverageRate_SKE.ReadOnly = true;
             this.textBoxStatAverageRate_SKE.Size = new System.Drawing.Size(87, 20);
             this.textBoxStatAverageRate_SKE.TabIndex = 1;
             // 
@@ -597,6 +595,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             // 
             this.textBoxStatTimeOpen_SKE.Location = new System.Drawing.Point(144, 130);
             this.textBoxStatTimeOpen_SKE.Name = "textBoxStatTimeOpen_SKE";
+            this.textBoxStatTimeOpen_SKE.ReadOnly = true;
             this.textBoxStatTimeOpen_SKE.Size = new System.Drawing.Size(87, 20);
             this.textBoxStatTimeOpen_SKE.TabIndex = 1;
             // 
@@ -604,8 +603,23 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             // 
             this.textBoxStatTimeClose_SKE.Location = new System.Drawing.Point(144, 156);
             this.textBoxStatTimeClose_SKE.Name = "textBoxStatTimeClose_SKE";
+            this.textBoxStatTimeClose_SKE.ReadOnly = true;
             this.textBoxStatTimeClose_SKE.Size = new System.Drawing.Size(87, 20);
             this.textBoxStatTimeClose_SKE.TabIndex = 1;
+            // 
+            // dataGridViewFile_SKE
+            // 
+            this.dataGridViewFile_SKE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewFile_SKE.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewFile_SKE.Location = new System.Drawing.Point(3, 16);
+            this.dataGridViewFile_SKE.Name = "dataGridViewFile_SKE";
+            this.dataGridViewFile_SKE.RowHeadersVisible = false;
+            this.dataGridViewFile_SKE.Size = new System.Drawing.Size(943, 218);
+            this.dataGridViewFile_SKE.TabIndex = 0;
+            // 
+            // openFileDialogFile_SKE
+            // 
+            this.openFileDialogFile_SKE.FileName = "openFileDialog1";
             // 
             // FormMain
             // 
@@ -620,10 +634,10 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Авторемонтные мастерские";
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.panelUp_SKE.ResumeLayout(false);
             this.panelFile_SKE.ResumeLayout(false);
             this.groupBoxFile_SKE.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFile_SKE)).EndInit();
             this.panelOptions_SKE.ResumeLayout(false);
             this.groupBoxStat_SKE.ResumeLayout(false);
             this.groupBoxStat_SKE.PerformLayout();
@@ -636,6 +650,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             this.panelGraph_SKE.ResumeLayout(false);
             this.groupBoxGraph_SKE.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chartGraph_SKE)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFile_SKE)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -681,7 +696,6 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
         private System.Windows.Forms.CheckBox checkBoxSortShowOnlyLow_SKE;
         private System.Windows.Forms.TextBox textBoxSortShowOnlyHigh_SKE;
         private System.Windows.Forms.TextBox textBoxSortShowOnlyLow_SKE;
-        private System.Windows.Forms.DataGridView dataGridViewFile_SKE;
         private System.Windows.Forms.Label labelStatCnt_SKE;
         private System.Windows.Forms.Label labelStatAverageRate_SKE;
         private System.Windows.Forms.TextBox textBoxStatTimeClose_SKE;
@@ -694,6 +708,8 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
         private System.Windows.Forms.Label labelStatMaxRate_SKE;
         private System.Windows.Forms.Label labelTimeClose_SKE;
         private System.Windows.Forms.Label labelTimeOpen_SKE;
+        private System.Windows.Forms.DataGridView dataGridViewFile_SKE;
+        private System.Windows.Forms.OpenFileDialog openFileDialogFile_SKE;
     }
 }
 
