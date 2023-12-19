@@ -29,11 +29,23 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1.Lib
             return mtrx;
         }
 
-        public int TimeOfWork(string open, string close)
+        public string[,] SortNum(string[,] array)
         {
-            int minsOpen = Convert.ToInt32(open.Split(':')[0]) * 60 + Convert.ToInt32(open.Split(':')[1]);
-            int minsClose = Convert.ToInt32(close.Split(':')[0]) * 60 + Convert.ToInt32(close.Split(':')[1]);
-            return minsClose - minsOpen;
+            int rows = array.GetUpperBound(0) + 1;
+            int[] index = new int[rows];
+            for (int i = 0; i < rows; i++)
+            {
+                index[i] = Convert.ToInt32(array[i, 0]);
+            }
+            string[,] res = new string[rows, 6];
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    res[index[i] - 1, j] = array[i, j];
+                }
+            }
+            return res;
         }
     }
 }

@@ -19,10 +19,12 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             InitializeComponent();
             openFileDialogFile_SKE.Filter = "Значения, разделенные запятыми(*.csv)|*.csv|Все файлы(*.*)|*.*";
         }
+
         DataService ds = new DataService();
         string path;
         string[,] array;
         int rows;
+
         private void buttonAbout_SKE_Click(object sender, EventArgs e)
         {
             FormAbout formAbout = new FormAbout();
@@ -33,6 +35,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
         {
             try
             {
+                FormMain formmain = new FormMain();
                 openFileDialogFile_SKE.ShowDialog();
                 path = openFileDialogFile_SKE.FileName;
                 array = ds.GetMatrix(path);
@@ -47,31 +50,37 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
                 }
                 buttonAdd_SKE.Enabled = true;
                 buttonDelete_SKE.Enabled = true;
+                buttonSortNum_SKE.Enabled = true;
                 buttonSortClose_SKE.Enabled = true;
                 buttonSortOpen_SKE.Enabled = true;
                 buttonSortRate_SKE.Enabled = true;
                 buttonSortTime_SKE.Enabled = true;
+                buttonSortName_SKE.Enabled = true;
+                checkBoxSortShowOnlyHigh_SKE.Enabled = true;
+                checkBoxSortShowOnlyLow_SKE.Enabled = true;
 
                 //Stats
                 double[] rates = new double[rows];
                 int[] timeOpen = new int[rows];
                 int[] timeClose = new int[rows];
+                int[] timeDuration = new int[rows];
                 string str;
-                for(int i = 0; i < rows; i++)
+                for (int i = 0; i < rows; i++)
                 {
                     rates[i] = Convert.ToDouble(dataGridViewFile_SKE.Rows[i].Cells[5].Value);
                     str = Convert.ToString(dataGridViewFile_SKE.Rows[i].Cells[2].Value);
-                    timeOpen[i] = Convert.ToInt32(str.Split(':')[0])*60 + Convert.ToInt32(str.Split(':')[1]);
+                    timeOpen[i] = Convert.ToInt32(str.Split(':')[0]) * 60 + Convert.ToInt32(str.Split(':')[1]);
                     str = Convert.ToString(dataGridViewFile_SKE.Rows[i].Cells[3].Value);
                     timeClose[i] = Convert.ToInt32(str.Split(':')[0]) * 60 + Convert.ToInt32(str.Split(':')[1]);
+                    timeDuration[i] = timeClose[i] - timeOpen[i];
                 }
-
                 textBoxStatCnt_SKE.Text = Convert.ToString(rows);
                 textBoxStatMaxRate_SKE.Text = Convert.ToString(rates.Max());
                 textBoxStatMinRate_SKE.Text = Convert.ToString(rates.Min());
                 textBoxStatAverageRate_SKE.Text = Convert.ToString(Math.Round(rates.Sum() / rows, 3));
-                textBoxStatTimeOpen_SKE.Text = Convert.ToString(timeOpen.Min() / 60) + ":" + Convert.ToString(timeOpen.Min() % 60);
-
+                textBoxStatTimeOpen_SKE.Text = Convert.ToString(timeOpen.Min() / 60) + ":" + (timeOpen.Min() % 60).ToString("00");
+                textBoxStatTimeClose_SKE.Text = Convert.ToString(timeClose.Max() / 60) + ":" + (timeClose.Max() % 60).ToString("00");
+                textBoxStatTimeDuration_SKE.Text = Convert.ToString(timeDuration.Max() / 60) + ":" + (timeDuration.Max() % 60).ToString("00");
 
             }
             catch
@@ -90,6 +99,32 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             dataGridViewFile_SKE.Columns[3].Width = 110;
             dataGridViewFile_SKE.Columns[4].Width = 120;
             dataGridViewFile_SKE.Columns[5].Width = 100;
+        }
+
+        private void checkBoxSortShowOnlyLow_SKE_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxSortShowOnlyLow_SKE.Checked == true)
+            {
+                textBoxSortShowOnlyLow_SKE.Enabled = true;
+            }
+            else
+            {
+                textBoxSortShowOnlyLow_SKE.Clear();
+                textBoxSortShowOnlyLow_SKE.Enabled = false;
+            }
+        }
+
+        private void checkBoxSortShowOnlyHigh_SKE_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxSortShowOnlyHigh_SKE.Checked == true)
+            {
+                textBoxSortShowOnlyHigh_SKE.Enabled = true;
+            }
+            else
+            {
+                textBoxSortShowOnlyHigh_SKE.Clear();
+                textBoxSortShowOnlyHigh_SKE.Enabled = false;
+            }
         }
     }
 }
