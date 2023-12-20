@@ -47,5 +47,31 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1.Lib
             }
             return res;
         }
+
+        public string[,] SortRate(string[,] array)
+        {
+            int rows = array.GetUpperBound(0) + 1;
+            string[,] res = array;
+            double max;
+            string temporary;
+            for (int i = 0; i < rows - 1; i++)
+            {
+                max = Convert.ToDouble(res[i, 5]);
+                for(int j = i + 1; j < rows; j++)
+                {
+                    if (max < Convert.ToDouble(res[j, 5]))
+                    {
+                        max = Convert.ToDouble(res[j, 5]);
+                        for(int k = 0; k < 6; k++)
+                        {
+                            temporary = res[i, k];
+                            res[i, k] = res[j, k];
+                            res[j, k] = temporary;
+                        }
+                    }
+                }
+            }
+            return res;
+        }
     }
 }

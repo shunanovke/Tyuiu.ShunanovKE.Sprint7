@@ -56,8 +56,6 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
                 buttonSortRate_SKE.Enabled = true;
                 buttonSortTime_SKE.Enabled = true;
                 buttonSortName_SKE.Enabled = true;
-                checkBoxSortShowOnlyHigh_SKE.Enabled = true;
-                checkBoxSortShowOnlyLow_SKE.Enabled = true;
 
                 //Stats
                 double[] rates = new double[rows];
@@ -101,30 +99,48 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             dataGridViewFile_SKE.Columns[5].Width = 100;
         }
 
-        private void checkBoxSortShowOnlyLow_SKE_CheckedChanged(object sender, EventArgs e)
+        private void buttonAdd_SKE_Click(object sender, EventArgs e)
         {
-            if (checkBoxSortShowOnlyLow_SKE.Checked == true)
+            try
             {
-                textBoxSortShowOnlyLow_SKE.Enabled = true;
+                dataGridViewFile_SKE.RowCount += 1;
+                string[] a = {dataGridViewFile_SKE.Rows[rows].Cells[0].Value.ToString(),
+                              dataGridViewFile_SKE.Rows[rows].Cells[1].Value.ToString(),
+                              dataGridViewFile_SKE.Rows[rows].Cells[2].Value.ToString(),
+                              dataGridViewFile_SKE.Rows[rows].Cells[3].Value.ToString(),
+                              dataGridViewFile_SKE.Rows[rows].Cells[4].Value.ToString(),
+                              dataGridViewFile_SKE.Rows[rows].Cells[5].Value.ToString() };
+                dataGridViewFile_SKE.Rows[rows].Cells[0].Value = rows + 1;
+                dataGridViewFile_SKE.Rows[rows].Cells[1].Value = textBoxAddName_SKE.Text;
+                dataGridViewFile_SKE.Rows[rows].Cells[2].Value = textBoxAddOpen_SKE.Text;
+                dataGridViewFile_SKE.Rows[rows].Cells[3].Value = textBoxAddClose_SKE.Text;
+                dataGridViewFile_SKE.Rows[rows].Cells[4].Value = textBoxAddPhone_SKE.Text;
+                dataGridViewFile_SKE.Rows[rows].Cells[5].Value = textBoxAddRate_SKE.Text;
+                for (int i = 0; i < 6; i++)
+                {
+                    dataGridViewFile_SKE.Rows[rows - 1].Cells[i].Value = a[i];
+                }
+                rows++;
             }
-            else
+            catch
             {
-                textBoxSortShowOnlyLow_SKE.Clear();
-                textBoxSortShowOnlyLow_SKE.Enabled = false;
+                MessageBox.Show("Введены неверные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void checkBoxSortShowOnlyHigh_SKE_CheckedChanged(object sender, EventArgs e)
+        private void buttonDelete_SKE_Click(object sender, EventArgs e)
         {
-            if (checkBoxSortShowOnlyHigh_SKE.Checked == true)
+            try
             {
-                textBoxSortShowOnlyHigh_SKE.Enabled = true;
-            }
-            else
-            {
-                textBoxSortShowOnlyHigh_SKE.Clear();
-                textBoxSortShowOnlyHigh_SKE.Enabled = false;
+                int num = Convert.ToInt32(textBoxDeleteNum_SKE);
+
             }
         }
+
+        private void buttonSortNum_SKE_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
