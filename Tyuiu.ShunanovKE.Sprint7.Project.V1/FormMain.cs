@@ -133,6 +133,10 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             try
             {
                 int num = Convert.ToInt32(textBoxDeleteNum_SKE);
+                
+            }
+            catch
+            {
 
             }
         }
