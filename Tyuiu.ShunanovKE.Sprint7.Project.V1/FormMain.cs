@@ -104,12 +104,12 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             try
             {
                 dataGridViewFile_SKE.RowCount += 1;
-                string[] a = {dataGridViewFile_SKE.Rows[rows].Cells[0].Value.ToString(),
-                              dataGridViewFile_SKE.Rows[rows].Cells[1].Value.ToString(),
-                              dataGridViewFile_SKE.Rows[rows].Cells[2].Value.ToString(),
-                              dataGridViewFile_SKE.Rows[rows].Cells[3].Value.ToString(),
-                              dataGridViewFile_SKE.Rows[rows].Cells[4].Value.ToString(),
-                              dataGridViewFile_SKE.Rows[rows].Cells[5].Value.ToString() };
+                string[] a = {dataGridViewFile_SKE.Rows[rows-1].Cells[0].Value.ToString(),
+                              dataGridViewFile_SKE.Rows[rows-1].Cells[1].Value.ToString(),
+                              dataGridViewFile_SKE.Rows[rows-1].Cells[2].Value.ToString(),
+                              dataGridViewFile_SKE.Rows[rows-1].Cells[3].Value.ToString(),
+                              dataGridViewFile_SKE.Rows[rows-1].Cells[4].Value.ToString(),
+                              dataGridViewFile_SKE.Rows[rows-1].Cells[5].Value.ToString() };
                 dataGridViewFile_SKE.Rows[rows].Cells[0].Value = rows + 1;
                 dataGridViewFile_SKE.Rows[rows].Cells[1].Value = textBoxAddName_SKE.Text;
                 dataGridViewFile_SKE.Rows[rows].Cells[2].Value = textBoxAddOpen_SKE.Text;
@@ -121,6 +121,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
                     dataGridViewFile_SKE.Rows[rows - 1].Cells[i].Value = a[i];
                 }
                 rows++;
+
             }
             catch
             {
@@ -143,8 +144,102 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
 
         private void buttonSortNum_SKE_Click(object sender, EventArgs e)
         {
-
+            string[,] temp_array = new string[rows, 6];
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    temp_array[i, j] = dataGridViewFile_SKE.Rows[i].Cells[j].Value.ToString();
+                }
+            }
+            string[,] new_array = ds.SortNum(temp_array);
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    dataGridViewFile_SKE.Rows[i].Cells[j].Value = new_array[i, j];
+                }
+            }
         }
 
+        private void buttonSortRate_SKE_Click(object sender, EventArgs e)
+        {
+            string[,] temp_array = new string[rows, 6];
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    temp_array[i, j] = dataGridViewFile_SKE.Rows[i].Cells[j].Value.ToString();
+                }
+            }
+            string[,] new_array = ds.SortRate(ds.SortNum(temp_array));
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    dataGridViewFile_SKE.Rows[i].Cells[j].Value = new_array[i, j];
+                }
+            }
+        }
+
+        private void buttonSortTime_SKE_Click(object sender, EventArgs e)
+        {
+            string[,] temp_array = new string[rows, 6];
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    temp_array[i, j] = dataGridViewFile_SKE.Rows[i].Cells[j].Value.ToString();
+                }
+            }
+            string[,] new_array = ds.SortTimeDuration(ds.SortNum(temp_array));
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    dataGridViewFile_SKE.Rows[i].Cells[j].Value = new_array[i, j];
+                }
+            }
+        }
+
+        private void buttonSortOpen_SKE_Click(object sender, EventArgs e)
+        {
+            string[,] temp_array = new string[rows, 6];
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    temp_array[i, j] = dataGridViewFile_SKE.Rows[i].Cells[j].Value.ToString();
+                }
+            }
+            string[,] new_array = ds.SortTimeOpen(ds.SortNum(temp_array));
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    dataGridViewFile_SKE.Rows[i].Cells[j].Value = new_array[i, j];
+                }
+            }
+        }
+
+        private void buttonSortClose_SKE_Click(object sender, EventArgs e)
+        {
+            string[,] temp_array = new string[rows, 6];
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    temp_array[i, j] = dataGridViewFile_SKE.Rows[i].Cells[j].Value.ToString();
+                }
+            }
+            string[,] new_array = ds.SortTimeClose(ds.SortNum(temp_array));
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    dataGridViewFile_SKE.Rows[i].Cells[j].Value = new_array[i, j];
+                }
+            }
+        }
     }
 }

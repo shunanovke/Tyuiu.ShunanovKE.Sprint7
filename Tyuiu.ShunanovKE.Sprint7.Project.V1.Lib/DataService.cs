@@ -57,12 +57,12 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1.Lib
             for (int i = 0; i < rows - 1; i++)
             {
                 max = Convert.ToDouble(res[i, 5]);
-                for(int j = i + 1; j < rows; j++)
+                for (int j = i + 1; j < rows; j++)
                 {
                     if (max < Convert.ToDouble(res[j, 5]))
                     {
                         max = Convert.ToDouble(res[j, 5]);
-                        for(int k = 0; k < 6; k++)
+                        for (int k = 0; k < 6; k++)
                         {
                             temporary = res[i, k];
                             res[i, k] = res[j, k];
@@ -81,12 +81,13 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1.Lib
             string temporary;
             for (int i = 0; i < rows - 1; i++)
             {
-                max = Convert.ToInt32(array[i, 2].Split(':')[0])*60 + Convert.ToInt32(array[i, 2].Split(':')[1])
+                max = Convert.ToInt32(array[i, 3].Split(':')[0]) * 60 + Convert.ToInt32(array[i, 3].Split(':')[1]);
+                max -= Convert.ToInt32(array[i, 2].Split(':')[0]) * 60 + Convert.ToInt32(array[i, 2].Split(':')[1]);
                 for (int j = i + 1; j < rows; j++)
                 {
-                    if (max < Convert.ToDouble(res[j, 5]))
+                    if (max < Convert.ToInt32(array[j, 3].Split(':')[0]) * 60 + Convert.ToInt32(array[j, 3].Split(':')[1]) - Convert.ToInt32(array[j, 2].Split(':')[0]) * 60 - Convert.ToInt32(array[j, 2].Split(':')[1]))
                     {
-                        max = Convert.ToDouble(res[j, 5]);
+                        max = Convert.ToInt32(array[j, 3].Split(':')[0]) * 60 + Convert.ToInt32(array[j, 3].Split(':')[1]) - Convert.ToInt32(array[j, 2].Split(':')[0]) * 60 - Convert.ToInt32(array[j, 2].Split(':')[1]);
                         for (int k = 0; k < 6; k++)
                         {
                             temporary = res[i, k];
@@ -98,5 +99,58 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1.Lib
             }
             return res;
         }
+        public string[,] SortTimeOpen(string[,] array)
+        {
+            int rows = array.GetUpperBound(0) + 1;
+            string[,] res = array;
+            int min;
+            string temporary;
+            for (int i = 0; i < rows - 1; i++)
+            {
+                min = Convert.ToInt32(array[i, 2].Split(':')[0]) * 60 + Convert.ToInt32(array[i, 2].Split(':')[1]);
+                for (int j = i + 1; j < rows; j++)
+                {
+                    if (min > Convert.ToInt32(array[j, 2].Split(':')[0]) * 60 + Convert.ToInt32(array[j, 2].Split(':')[1]))
+                    {
+                        min = Convert.ToInt32(array[j, 2].Split(':')[0]) * 60 + Convert.ToInt32(array[j, 2].Split(':')[1]);
+                        for (int k = 0; k < 6; k++)
+                        {
+                            temporary = res[i, k];
+                            res[i, k] = res[j, k];
+                            res[j, k] = temporary;
+                        }
+                    }
+                }
+            }
+            return res;
+        }
+        public string[,] SortTimeClose(string[,] array)
+        {
+            int rows = array.GetUpperBound(0) + 1;
+            string[,] res = array;
+            int max;
+            string temporary;
+            for (int i = 0; i < rows - 1; i++)
+            {
+                max = Convert.ToInt32(array[i, 3].Split(':')[0]) * 60 + Convert.ToInt32(array[i, 3].Split(':')[1]);
+                for (int j = i + 1; j < rows; j++)
+                {
+                    if (max < Convert.ToInt32(array[j, 3].Split(':')[0]) * 60 + Convert.ToInt32(array[j, 3].Split(':')[1]))
+                    {
+                        max = Convert.ToInt32(array[j, 3].Split(':')[0]) * 60 + Convert.ToInt32(array[j, 3].Split(':')[1]);
+                        for (int k = 0; k < 6; k++)
+                        {
+                            temporary = res[i, k];
+                            res[i, k] = res[j, k];
+                            res[j, k] = temporary;
+                        }
+                    }
+                }
+            }
+            return res;
+        }
+        //public string[,] SortName(string[,] array)
+        //{
+        //}
     }
 }
