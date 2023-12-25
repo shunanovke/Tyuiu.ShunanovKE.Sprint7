@@ -119,12 +119,6 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             saveFileDialogFile_SKE.InitialDirectory = Directory.GetCurrentDirectory();
             string outPath = saveFileDialogFile_SKE.FileName;
 
-            FileInfo fileinfo = new FileInfo(outPath);
-            bool fileex = fileinfo.Exists;
-            if (fileex)
-            {
-                File.Delete(outPath);
-            }
             saveFileDialogFile_SKE.ShowDialog();
             string str = "";
             for (int i = 0; i < rows; i++)
@@ -384,7 +378,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             }
             //Graph
             this.chartGraph_SKE.ChartAreas[0].AxisX.Title = "Номер автомастерской";
-            this.chartGraph_SKE.ChartAreas[0].AxisY.Title = "Время работы (ч.)";
+            this.chartGraph_SKE.ChartAreas[0].AxisY.Title = "Время закрытия (ч.)";
             chartGraph_SKE.Series[0].Points.Clear();
             double dur;
             int cl;
