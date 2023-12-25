@@ -12,16 +12,13 @@ namespace test
         static void Main(string[] args)
         {
             DataService ds = new DataService(); 
-            string[,] array = {  { "1", "CarExpress", "9:00", "20:00", "83452393500", "3,5" },
-                                { "2", "AutoLeague", "10:00", "18:00", "83452500007", "4,2" },
-                                { "3", "CarCarCar", "8:10", "16:00", "83452337690", "3,7" } };
-
-            string[,] res = ds.SortRate(array);
-            int rows = res.GetUpperBound(0) + 1;
-            int cols = res.Length / rows;
-            for (int i = 0; i < rows; i++)
+            string[,] array = { { "1", "CarXpress", "9:00", "20:00", "83452393500", "3,5" },
+                                { "3", "CarCarCar", "8:10", "16:00", "83452337690", "3,7" },
+                                { "2", "AutoLeague", "10:00", "18:00", "83452500007", "4,2" } };
+            string[,] res = ds.SortName(array);
+            for(int i = 0; i < 3; i++)
             {
-                for(int j = 0; j < cols; j++)
+                for(int j = 0; j < 6; j++)
                 {
                     Console.Write(res[i, j] + ' ');
                 }

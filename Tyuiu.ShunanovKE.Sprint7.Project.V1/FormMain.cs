@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tyuiu.ShunanovKE.Sprint7.Project.V1.Lib;
+using System.IO;
 
 
 namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
@@ -18,27 +19,51 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
         {
             InitializeComponent();
             openFileDialogFile_SKE.Filter = "Значения, разделенные запятыми(*.csv)|*.csv|Все файлы(*.*)|*.*";
+            saveFileDialogFile_SKE.Filter = "Значения, разделенные запятыми(*.csv)|*.csv|Все файлы(*.*)|*.*";
+
         }
 
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            dataGridViewFile_SKE.RowCount = 10;
+            dataGridViewFile_SKE.ColumnCount = 6;
+            dataGridViewFile_SKE.Columns[0].Width = 20;
+            dataGridViewFile_SKE.Columns[1].Width = 320;
+            dataGridViewFile_SKE.Columns[2].Width = 110;
+            dataGridViewFile_SKE.Columns[3].Width = 110;
+            dataGridViewFile_SKE.Columns[4].Width = 120;
+            dataGridViewFile_SKE.Columns[5].Width = 100;
+
+        }
+
+
         DataService ds = new DataService();
-        string path;
-        string[,] array;
         int rows;
 
+
+        //OtherForms
         private void buttonAbout_SKE_Click(object sender, EventArgs e)
         {
             FormAbout formAbout = new FormAbout();
             formAbout.ShowDialog();
         }
 
+        private void buttonAboutProgram_SKE_Click(object sender, EventArgs e)
+        {
+            FormForUser formForUser = new FormForUser();
+            formForUser.ShowDialog();
+        }
+
+
+        //File
         private void buttonOpenFile_SKE_Click(object sender, EventArgs e)
         {
             try
             {
                 FormMain formmain = new FormMain();
                 openFileDialogFile_SKE.ShowDialog();
-                path = openFileDialogFile_SKE.FileName;
-                array = ds.GetMatrix(path);
+                string path = openFileDialogFile_SKE.FileName;
+                string[,] array = ds.GetMatrix(path);
                 rows = array.GetUpperBound(0) + 1;
                 dataGridViewFile_SKE.RowCount = rows;
                 for (int i = 0; i < rows; i++)
@@ -56,6 +81,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
                 buttonSortRate_SKE.Enabled = true;
                 buttonSortTime_SKE.Enabled = true;
                 buttonSortName_SKE.Enabled = true;
+                buttonSaveFile_SKE.Enabled = true;
 
                 //Stats
                 double[] rates = new double[rows];
@@ -87,41 +113,81 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             }
         }
 
-        private void FormMain_Load(object sender, EventArgs e)
+        private void buttonSaveFile_SKE_Click(object sender, EventArgs e)
         {
-            dataGridViewFile_SKE.RowCount = 10;
-            dataGridViewFile_SKE.ColumnCount = 6;
-            dataGridViewFile_SKE.Columns[0].Width = 20;
-            dataGridViewFile_SKE.Columns[1].Width = 320;
-            dataGridViewFile_SKE.Columns[2].Width = 110;
-            dataGridViewFile_SKE.Columns[3].Width = 110;
-            dataGridViewFile_SKE.Columns[4].Width = 120;
-            dataGridViewFile_SKE.Columns[5].Width = 100;
+            saveFileDialogFile_SKE.FileName = "OutPutFileProjectV1.csv";
+            saveFileDialogFile_SKE.InitialDirectory = Directory.GetCurrentDirectory();
+            string outPath = saveFileDialogFile_SKE.FileName;
+
+            FileInfo fileinfo = new FileInfo(outPath);
+            bool fileex = fileinfo.Exists;
+            if (fileex)
+            {
+                File.Delete(outPath);
+            }
+            saveFileDialogFile_SKE.ShowDialog();
+            string str = "";
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    if (j != 6 - 1)
+                    {
+                        str += dataGridViewFile_SKE.Rows[i].Cells[j].Value + ";";
+                    }
+                    else
+                    {
+                        str += dataGridViewFile_SKE.Rows[i].Cells[j].Value;
+                    }
+                }
+                File.AppendAllText(outPath, str + Environment.NewLine);
+                str = "";
+            }
         }
 
+
+
+
+        //Editing
         private void buttonAdd_SKE_Click(object sender, EventArgs e)
         {
             try
             {
-                dataGridViewFile_SKE.RowCount += 1;
-                string[] a = {dataGridViewFile_SKE.Rows[rows-1].Cells[0].Value.ToString(),
-                              dataGridViewFile_SKE.Rows[rows-1].Cells[1].Value.ToString(),
-                              dataGridViewFile_SKE.Rows[rows-1].Cells[2].Value.ToString(),
-                              dataGridViewFile_SKE.Rows[rows-1].Cells[3].Value.ToString(),
-                              dataGridViewFile_SKE.Rows[rows-1].Cells[4].Value.ToString(),
-                              dataGridViewFile_SKE.Rows[rows-1].Cells[5].Value.ToString() };
-                dataGridViewFile_SKE.Rows[rows].Cells[0].Value = rows + 1;
-                dataGridViewFile_SKE.Rows[rows].Cells[1].Value = textBoxAddName_SKE.Text;
-                dataGridViewFile_SKE.Rows[rows].Cells[2].Value = textBoxAddOpen_SKE.Text;
-                dataGridViewFile_SKE.Rows[rows].Cells[3].Value = textBoxAddClose_SKE.Text;
-                dataGridViewFile_SKE.Rows[rows].Cells[4].Value = textBoxAddPhone_SKE.Text;
-                dataGridViewFile_SKE.Rows[rows].Cells[5].Value = textBoxAddRate_SKE.Text;
-                for (int i = 0; i < 6; i++)
+                if (Convert.ToDouble(textBoxAddRate_SKE.Text) >= 1 && Convert.ToDouble(textBoxAddRate_SKE.Text) <= 5 &&
+                    (Convert.ToInt32(textBoxAddClose_SKE.Text.Split(':')[0]) < 24) && ((Convert.ToInt32(textBoxAddClose_SKE.Text.Split(':')[1]) < 60)) &&
+                    (Convert.ToInt32(textBoxAddOpen_SKE.Text.Split(':')[0]) < 24) && ((Convert.ToInt32(textBoxAddOpen_SKE.Text.Split(':')[1]) < 60)) &&
+                    textBoxAddPhone_SKE.Text.Length == 11 && textBoxAddName_SKE.Text.Length != 0 &&
+                    textBoxAddOpen_SKE.Text.Split(':')[0].Length <= 2 && textBoxAddOpen_SKE.Text.Split(':')[1].Length == 2 &&
+                    textBoxAddClose_SKE.Text.Split(':')[0].Length <= 2 && textBoxAddClose_SKE.Text.Split(':')[1].Length == 2)
                 {
-                    dataGridViewFile_SKE.Rows[rows - 1].Cells[i].Value = a[i];
-                }
-                rows++;
+                    dataGridViewFile_SKE.Rows.Add((rows + 1).ToString(), textBoxAddName_SKE.Text, textBoxAddOpen_SKE.Text,
+                    textBoxAddClose_SKE.Text, textBoxAddPhone_SKE.Text, textBoxAddRate_SKE.Text);
+                    rows++;
 
+                    //Stats
+                    double[] rates = new double[rows];
+                    int[] timeOpen = new int[rows];
+                    int[] timeClose = new int[rows];
+                    int[] timeDuration = new int[rows];
+                    string str;
+                    for (int i = 0; i < rows; i++)
+                    {
+                        rates[i] = Convert.ToDouble(dataGridViewFile_SKE.Rows[i].Cells[5].Value);
+                        str = Convert.ToString(dataGridViewFile_SKE.Rows[i].Cells[2].Value);
+                        timeOpen[i] = Convert.ToInt32(str.Split(':')[0]) * 60 + Convert.ToInt32(str.Split(':')[1]);
+                        str = Convert.ToString(dataGridViewFile_SKE.Rows[i].Cells[3].Value);
+                        timeClose[i] = Convert.ToInt32(str.Split(':')[0]) * 60 + Convert.ToInt32(str.Split(':')[1]);
+                        timeDuration[i] = timeClose[i] - timeOpen[i];
+                    }
+                    textBoxStatCnt_SKE.Text = Convert.ToString(rows);
+                    textBoxStatMaxRate_SKE.Text = Convert.ToString(rates.Max());
+                    textBoxStatMinRate_SKE.Text = Convert.ToString(rates.Min());
+                    textBoxStatAverageRate_SKE.Text = Convert.ToString(Math.Round(rates.Sum() / rows, 3));
+                    textBoxStatTimeOpen_SKE.Text = Convert.ToString(timeOpen.Min() / 60) + ":" + (timeOpen.Min() % 60).ToString("00");
+                    textBoxStatTimeClose_SKE.Text = Convert.ToString(timeClose.Max() / 60) + ":" + (timeClose.Max() % 60).ToString("00");
+                    textBoxStatTimeDuration_SKE.Text = Convert.ToString(timeDuration.Max() / 60) + ":" + (timeDuration.Max() % 60).ToString("00");
+                }
+                else MessageBox.Show("Введены неверные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch
             {
@@ -133,8 +199,44 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
         {
             try
             {
-                int num = Convert.ToInt32(textBoxDeleteNum_SKE);
-                
+                string num = textBoxDeleteNum_SKE.Text;
+                for (int i = 0; i < rows; i++)
+                {
+                    if (dataGridViewFile_SKE.Rows[i].Cells[0].Value.ToString() == num)
+                    {
+                        dataGridViewFile_SKE.Rows.Remove(dataGridViewFile_SKE.Rows[i]);
+                        rows--;
+                    }
+                }
+                for (int i = 0; i < rows; i++)
+                {
+                    if (Convert.ToInt32(dataGridViewFile_SKE.Rows[i].Cells[0].Value) > Convert.ToInt32(num))
+                    {
+                        dataGridViewFile_SKE.Rows[i].Cells[0].Value = Convert.ToString(Convert.ToInt32(dataGridViewFile_SKE.Rows[i].Cells[0].Value) - 1);
+                    }
+                }
+                //Stats
+                double[] rates = new double[rows];
+                int[] timeOpen = new int[rows];
+                int[] timeClose = new int[rows];
+                int[] timeDuration = new int[rows];
+                string str;
+                for (int i = 0; i < rows; i++)
+                {
+                    rates[i] = Convert.ToDouble(dataGridViewFile_SKE.Rows[i].Cells[5].Value);
+                    str = Convert.ToString(dataGridViewFile_SKE.Rows[i].Cells[2].Value);
+                    timeOpen[i] = Convert.ToInt32(str.Split(':')[0]) * 60 + Convert.ToInt32(str.Split(':')[1]);
+                    str = Convert.ToString(dataGridViewFile_SKE.Rows[i].Cells[3].Value);
+                    timeClose[i] = Convert.ToInt32(str.Split(':')[0]) * 60 + Convert.ToInt32(str.Split(':')[1]);
+                    timeDuration[i] = timeClose[i] - timeOpen[i];
+                }
+                textBoxStatCnt_SKE.Text = Convert.ToString(rows);
+                textBoxStatMaxRate_SKE.Text = Convert.ToString(rates.Max());
+                textBoxStatMinRate_SKE.Text = Convert.ToString(rates.Min());
+                textBoxStatAverageRate_SKE.Text = Convert.ToString(Math.Round(rates.Sum() / rows, 3));
+                textBoxStatTimeOpen_SKE.Text = Convert.ToString(timeOpen.Min() / 60) + ":" + (timeOpen.Min() % 60).ToString("00");
+                textBoxStatTimeClose_SKE.Text = Convert.ToString(timeClose.Max() / 60) + ":" + (timeClose.Max() % 60).ToString("00");
+                textBoxStatTimeDuration_SKE.Text = Convert.ToString(timeDuration.Max() / 60) + ":" + (timeDuration.Max() % 60).ToString("00");
             }
             catch
             {
@@ -142,6 +244,9 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             }
         }
 
+
+
+        //Sorting
         private void buttonSortNum_SKE_Click(object sender, EventArgs e)
         {
             string[,] temp_array = new string[rows, 6];
@@ -180,6 +285,15 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
                     dataGridViewFile_SKE.Rows[i].Cells[j].Value = new_array[i, j];
                 }
             }
+
+            //Graph
+            this.chartGraph_SKE.ChartAreas[0].AxisX.Title = "Номер автомастерской";
+            this.chartGraph_SKE.ChartAreas[0].AxisY.Title = "Рейтинг";
+            chartGraph_SKE.Series[0].Points.Clear();
+            for (int i = 0; i < rows; i++)
+            {
+                chartGraph_SKE.Series[0].Points.AddXY(Convert.ToInt32(dataGridViewFile_SKE.Rows[i].Cells[0].Value), Convert.ToDouble(dataGridViewFile_SKE.Rows[i].Cells[5].Value));
+            }
         }
 
         private void buttonSortTime_SKE_Click(object sender, EventArgs e)
@@ -199,6 +313,21 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
                 {
                     dataGridViewFile_SKE.Rows[i].Cells[j].Value = new_array[i, j];
                 }
+            }
+            //Graph
+            this.chartGraph_SKE.ChartAreas[0].AxisX.Title = "Номер автомастерской";
+            this.chartGraph_SKE.ChartAreas[0].AxisY.Title = "Время работы (ч.)";
+            chartGraph_SKE.Series[0].Points.Clear();
+            double dur;
+            int cl, op;
+            for (int i = 0; i < rows; i++)
+            {
+                cl = Convert.ToInt32(dataGridViewFile_SKE.Rows[i].Cells[3].Value.ToString().Split(':')[0]) * 60 + 
+                     Convert.ToInt32(dataGridViewFile_SKE.Rows[i].Cells[3].Value.ToString().Split(':')[1]);
+                op = Convert.ToInt32(dataGridViewFile_SKE.Rows[i].Cells[2].Value.ToString().Split(':')[0]) * 60 +
+                     Convert.ToInt32(dataGridViewFile_SKE.Rows[i].Cells[2].Value.ToString().Split(':')[1]);
+                dur = Convert.ToDouble(cl - op) / 60;
+                chartGraph_SKE.Series[0].Points.AddXY(Convert.ToInt32(dataGridViewFile_SKE.Rows[i].Cells[0].Value), dur);
             }
         }
 
@@ -220,6 +349,19 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
                     dataGridViewFile_SKE.Rows[i].Cells[j].Value = new_array[i, j];
                 }
             }
+            //Graph
+            this.chartGraph_SKE.ChartAreas[0].AxisX.Title = "Номер автомастерской";
+            this.chartGraph_SKE.ChartAreas[0].AxisY.Title = "Время открытия (ч.)";
+            chartGraph_SKE.Series[0].Points.Clear();
+            double dur;
+            int op;
+            for (int i = 0; i < rows; i++)
+            {
+                op = Convert.ToInt32(dataGridViewFile_SKE.Rows[i].Cells[2].Value.ToString().Split(':')[0]) * 60 +
+                     Convert.ToInt32(dataGridViewFile_SKE.Rows[i].Cells[2].Value.ToString().Split(':')[1]);
+                dur = Convert.ToDouble(op) / 60;
+                chartGraph_SKE.Series[0].Points.AddXY(Convert.ToInt32(dataGridViewFile_SKE.Rows[i].Cells[0].Value), dur);
+            }
         }
 
         private void buttonSortClose_SKE_Click(object sender, EventArgs e)
@@ -240,6 +382,83 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
                     dataGridViewFile_SKE.Rows[i].Cells[j].Value = new_array[i, j];
                 }
             }
+            //Graph
+            this.chartGraph_SKE.ChartAreas[0].AxisX.Title = "Номер автомастерской";
+            this.chartGraph_SKE.ChartAreas[0].AxisY.Title = "Время работы (ч.)";
+            chartGraph_SKE.Series[0].Points.Clear();
+            double dur;
+            int cl;
+            for (int i = 0; i < rows; i++)
+            {
+                cl = Convert.ToInt32(dataGridViewFile_SKE.Rows[i].Cells[3].Value.ToString().Split(':')[0]) * 60 +
+                     Convert.ToInt32(dataGridViewFile_SKE.Rows[i].Cells[3].Value.ToString().Split(':')[1]);
+                dur = Convert.ToDouble(cl) / 60;
+                chartGraph_SKE.Series[0].Points.AddXY(Convert.ToInt32(dataGridViewFile_SKE.Rows[i].Cells[0].Value), dur);
+            }
         }
+
+        private void buttonSortName_SKE_Click(object sender, EventArgs e)
+        {
+            string[,] temp_array = new string[rows, 6];
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    temp_array[i, j] = dataGridViewFile_SKE.Rows[i].Cells[j].Value.ToString();
+                }
+            }
+            string[,] new_array = ds.SortName(ds.SortNum(temp_array));
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    dataGridViewFile_SKE.Rows[i].Cells[j].Value = new_array[i, j];
+                }
+            }
+        }
+
+
+
+        //Keypress
+        private void textBoxAddOpen_SKE_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (((e.KeyChar <= 47 || e.KeyChar >= 58) && (e.KeyChar != ':') && (e.KeyChar != 8)) || ((textBoxAddOpen_SKE.Text.Length > 4) && (e.KeyChar != 8)))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBoxAddRate_SKE_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (((e.KeyChar <= 47 || e.KeyChar >= 58) && (e.KeyChar != ',') && (e.KeyChar != 8)) || ((textBoxAddRate_SKE.Text.Length > 2)) && (e.KeyChar != 8))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBoxAddPhone_SKE_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (((e.KeyChar <= 47 || e.KeyChar >= 58) && (e.KeyChar != 8)) || ((textBoxAddPhone_SKE.Text.Length > 10) && (e.KeyChar != 8)))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBoxAddClose_SKE_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (((e.KeyChar <= 47 || e.KeyChar >= 58) && (e.KeyChar != ':') && (e.KeyChar != 8)) || ((textBoxAddClose_SKE.Text.Length > 4) && (e.KeyChar != 8)))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBoxAddName_SKE_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar < 65 || (e.KeyChar > 90 && e.KeyChar < 97) || e.KeyChar > 122) && e.KeyChar != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
     }
 }

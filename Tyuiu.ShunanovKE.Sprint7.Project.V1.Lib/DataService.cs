@@ -82,7 +82,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1.Lib
             for (int i = 0; i < rows - 1; i++)
             {
                 max = Convert.ToInt32(array[i, 3].Split(':')[0]) * 60 + Convert.ToInt32(array[i, 3].Split(':')[1]);
-                max -= Convert.ToInt32(array[i, 2].Split(':')[0]) * 60 + Convert.ToInt32(array[i, 2].Split(':')[1]);
+                max = max - Convert.ToInt32(array[i, 2].Split(':')[0]) * 60 + Convert.ToInt32(array[i, 2].Split(':')[1]);
                 for (int j = i + 1; j < rows; j++)
                 {
                     if (max < Convert.ToInt32(array[j, 3].Split(':')[0]) * 60 + Convert.ToInt32(array[j, 3].Split(':')[1]) - Convert.ToInt32(array[j, 2].Split(':')[0]) * 60 - Convert.ToInt32(array[j, 2].Split(':')[1]))
@@ -149,8 +149,31 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1.Lib
             }
             return res;
         }
-        //public string[,] SortName(string[,] array)
-        //{
-        //}
+        public string[,] SortName(string[,] array)
+        {
+            int rows = array.GetUpperBound(0) + 1;
+            string[,] res = new string[rows,6];
+            string[] names = new string[rows];
+            for (int i = 0; i < rows; i++)
+            {
+                names[i] = array[i, 1];
+            }
+            Array.Sort(names);
+            for (int i = 0; i < names.Length; i++)
+            {
+                for (int j = 0; j < rows; j++)
+                {
+                    if (names[i] == array[j, 1])
+                    {
+                        for (int k = 0; k < 6; k++)
+                        {
+                            res[i, k] = array[j, k];
+                        }
+                        break;
+                    }
+                }
+            }
+            return res;
+        }
     }
 }

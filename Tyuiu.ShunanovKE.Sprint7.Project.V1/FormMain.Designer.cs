@@ -29,9 +29,10 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panelUp_SKE = new System.Windows.Forms.Panel();
             this.buttonAboutProgram_SKE = new System.Windows.Forms.Button();
             this.buttonSaveFile_SKE = new System.Windows.Forms.Button();
@@ -83,6 +84,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             this.groupBoxGraph_SKE = new System.Windows.Forms.GroupBox();
             this.chartGraph_SKE = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.openFileDialogFile_SKE = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialogFile_SKE = new System.Windows.Forms.SaveFileDialog();
             this.panelUp_SKE.SuspendLayout();
             this.panelFile_SKE.SuspendLayout();
             this.groupBoxFile_SKE.SuspendLayout();
@@ -106,54 +108,67 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             this.panelUp_SKE.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelUp_SKE.Location = new System.Drawing.Point(0, 0);
             this.panelUp_SKE.Name = "panelUp_SKE";
-            this.panelUp_SKE.Size = new System.Drawing.Size(1101, 65);
+            this.panelUp_SKE.Size = new System.Drawing.Size(959, 65);
             this.panelUp_SKE.TabIndex = 0;
             // 
             // buttonAboutProgram_SKE
             // 
-            this.buttonAboutProgram_SKE.Location = new System.Drawing.Point(901, 12);
+            this.buttonAboutProgram_SKE.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonAboutProgram_SKE.BackColor = System.Drawing.Color.LightCyan;
+            this.buttonAboutProgram_SKE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAboutProgram_SKE.Image = ((System.Drawing.Image)(resources.GetObject("buttonAboutProgram_SKE.Image")));
+            this.buttonAboutProgram_SKE.Location = new System.Drawing.Point(759, 12);
             this.buttonAboutProgram_SKE.Name = "buttonAboutProgram_SKE";
             this.buttonAboutProgram_SKE.Size = new System.Drawing.Size(89, 44);
             this.buttonAboutProgram_SKE.TabIndex = 2;
-            this.buttonAboutProgram_SKE.Text = "Руководство пользователя";
-            this.buttonAboutProgram_SKE.UseVisualStyleBackColor = true;
+            this.buttonAboutProgram_SKE.UseVisualStyleBackColor = false;
+            this.buttonAboutProgram_SKE.Click += new System.EventHandler(this.buttonAboutProgram_SKE_Click);
             // 
             // buttonSaveFile_SKE
             // 
+            this.buttonSaveFile_SKE.BackColor = System.Drawing.Color.LightBlue;
+            this.buttonSaveFile_SKE.Enabled = false;
+            this.buttonSaveFile_SKE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSaveFile_SKE.Image = ((System.Drawing.Image)(resources.GetObject("buttonSaveFile_SKE.Image")));
             this.buttonSaveFile_SKE.Location = new System.Drawing.Point(114, 12);
             this.buttonSaveFile_SKE.Name = "buttonSaveFile_SKE";
             this.buttonSaveFile_SKE.Size = new System.Drawing.Size(93, 44);
             this.buttonSaveFile_SKE.TabIndex = 1;
-            this.buttonSaveFile_SKE.Text = "buttonSaveFile";
-            this.buttonSaveFile_SKE.UseVisualStyleBackColor = true;
+            this.buttonSaveFile_SKE.UseVisualStyleBackColor = false;
+            this.buttonSaveFile_SKE.Click += new System.EventHandler(this.buttonSaveFile_SKE_Click);
             // 
             // buttonOpenFile_SKE
             // 
+            this.buttonOpenFile_SKE.BackColor = System.Drawing.Color.LightGreen;
+            this.buttonOpenFile_SKE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonOpenFile_SKE.Image = ((System.Drawing.Image)(resources.GetObject("buttonOpenFile_SKE.Image")));
             this.buttonOpenFile_SKE.Location = new System.Drawing.Point(15, 12);
             this.buttonOpenFile_SKE.Name = "buttonOpenFile_SKE";
             this.buttonOpenFile_SKE.Size = new System.Drawing.Size(93, 44);
             this.buttonOpenFile_SKE.TabIndex = 1;
-            this.buttonOpenFile_SKE.Text = "buttonOpenFile";
-            this.buttonOpenFile_SKE.UseVisualStyleBackColor = true;
+            this.buttonOpenFile_SKE.UseVisualStyleBackColor = false;
             this.buttonOpenFile_SKE.Click += new System.EventHandler(this.buttonOpenFile_SKE_Click);
             // 
             // buttonInfo_SKE
             // 
-            this.buttonInfo_SKE.Location = new System.Drawing.Point(996, 12);
+            this.buttonInfo_SKE.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonInfo_SKE.BackColor = System.Drawing.Color.LightCyan;
+            this.buttonInfo_SKE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonInfo_SKE.Image = ((System.Drawing.Image)(resources.GetObject("buttonInfo_SKE.Image")));
+            this.buttonInfo_SKE.Location = new System.Drawing.Point(854, 12);
             this.buttonInfo_SKE.Name = "buttonInfo_SKE";
             this.buttonInfo_SKE.Size = new System.Drawing.Size(93, 44);
             this.buttonInfo_SKE.TabIndex = 0;
-            this.buttonInfo_SKE.Text = "Справка";
-            this.buttonInfo_SKE.UseVisualStyleBackColor = true;
+            this.buttonInfo_SKE.UseVisualStyleBackColor = false;
             this.buttonInfo_SKE.Click += new System.EventHandler(this.buttonAbout_SKE_Click);
             // 
             // panelFile_SKE
             // 
             this.panelFile_SKE.Controls.Add(this.groupBoxFile_SKE);
             this.panelFile_SKE.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelFile_SKE.Location = new System.Drawing.Point(0, 491);
+            this.panelFile_SKE.Location = new System.Drawing.Point(0, 459);
             this.panelFile_SKE.Name = "panelFile_SKE";
-            this.panelFile_SKE.Size = new System.Drawing.Size(1101, 171);
+            this.panelFile_SKE.Size = new System.Drawing.Size(959, 203);
             this.panelFile_SKE.TabIndex = 1;
             // 
             // groupBoxFile_SKE
@@ -162,7 +177,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             this.groupBoxFile_SKE.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxFile_SKE.Location = new System.Drawing.Point(0, 0);
             this.groupBoxFile_SKE.Name = "groupBoxFile_SKE";
-            this.groupBoxFile_SKE.Size = new System.Drawing.Size(1101, 171);
+            this.groupBoxFile_SKE.Size = new System.Drawing.Size(959, 203);
             this.groupBoxFile_SKE.TabIndex = 0;
             this.groupBoxFile_SKE.TabStop = false;
             this.groupBoxFile_SKE.Text = "Авторемонтные мастерские";
@@ -180,7 +195,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             this.dataGridViewFile_SKE.Name = "dataGridViewFile_SKE";
             this.dataGridViewFile_SKE.ReadOnly = true;
             this.dataGridViewFile_SKE.RowHeadersVisible = false;
-            this.dataGridViewFile_SKE.Size = new System.Drawing.Size(1095, 152);
+            this.dataGridViewFile_SKE.Size = new System.Drawing.Size(953, 184);
             this.dataGridViewFile_SKE.TabIndex = 0;
             // 
             // panelOptions_SKE
@@ -192,7 +207,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             this.panelOptions_SKE.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelOptions_SKE.Location = new System.Drawing.Point(0, 65);
             this.panelOptions_SKE.Name = "panelOptions_SKE";
-            this.panelOptions_SKE.Size = new System.Drawing.Size(494, 426);
+            this.panelOptions_SKE.Size = new System.Drawing.Size(494, 394);
             this.panelOptions_SKE.TabIndex = 2;
             // 
             // groupBoxStat_SKE
@@ -214,14 +229,14 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             this.groupBoxStat_SKE.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxStat_SKE.Location = new System.Drawing.Point(202, 162);
             this.groupBoxStat_SKE.Name = "groupBoxStat_SKE";
-            this.groupBoxStat_SKE.Size = new System.Drawing.Size(292, 264);
+            this.groupBoxStat_SKE.Size = new System.Drawing.Size(292, 232);
             this.groupBoxStat_SKE.TabIndex = 3;
             this.groupBoxStat_SKE.TabStop = false;
             this.groupBoxStat_SKE.Text = "Статистика";
             // 
             // textBoxStatTimeDuration_SKE
             // 
-            this.textBoxStatTimeDuration_SKE.Location = new System.Drawing.Point(180, 213);
+            this.textBoxStatTimeDuration_SKE.Location = new System.Drawing.Point(179, 200);
             this.textBoxStatTimeDuration_SKE.Name = "textBoxStatTimeDuration_SKE";
             this.textBoxStatTimeDuration_SKE.ReadOnly = true;
             this.textBoxStatTimeDuration_SKE.Size = new System.Drawing.Size(87, 20);
@@ -229,7 +244,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             // 
             // textBoxStatTimeClose_SKE
             // 
-            this.textBoxStatTimeClose_SKE.Location = new System.Drawing.Point(180, 184);
+            this.textBoxStatTimeClose_SKE.Location = new System.Drawing.Point(179, 171);
             this.textBoxStatTimeClose_SKE.Name = "textBoxStatTimeClose_SKE";
             this.textBoxStatTimeClose_SKE.ReadOnly = true;
             this.textBoxStatTimeClose_SKE.Size = new System.Drawing.Size(87, 20);
@@ -237,7 +252,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             // 
             // textBoxStatTimeOpen_SKE
             // 
-            this.textBoxStatTimeOpen_SKE.Location = new System.Drawing.Point(180, 155);
+            this.textBoxStatTimeOpen_SKE.Location = new System.Drawing.Point(179, 142);
             this.textBoxStatTimeOpen_SKE.Name = "textBoxStatTimeOpen_SKE";
             this.textBoxStatTimeOpen_SKE.ReadOnly = true;
             this.textBoxStatTimeOpen_SKE.Size = new System.Drawing.Size(87, 20);
@@ -245,7 +260,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             // 
             // textBoxStatAverageRate_SKE
             // 
-            this.textBoxStatAverageRate_SKE.Location = new System.Drawing.Point(180, 126);
+            this.textBoxStatAverageRate_SKE.Location = new System.Drawing.Point(179, 113);
             this.textBoxStatAverageRate_SKE.Name = "textBoxStatAverageRate_SKE";
             this.textBoxStatAverageRate_SKE.ReadOnly = true;
             this.textBoxStatAverageRate_SKE.Size = new System.Drawing.Size(87, 20);
@@ -253,7 +268,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             // 
             // textBoxStatMinRate_SKE
             // 
-            this.textBoxStatMinRate_SKE.Location = new System.Drawing.Point(180, 97);
+            this.textBoxStatMinRate_SKE.Location = new System.Drawing.Point(179, 84);
             this.textBoxStatMinRate_SKE.Name = "textBoxStatMinRate_SKE";
             this.textBoxStatMinRate_SKE.ReadOnly = true;
             this.textBoxStatMinRate_SKE.Size = new System.Drawing.Size(87, 20);
@@ -261,7 +276,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             // 
             // textBoxStatMaxRate_SKE
             // 
-            this.textBoxStatMaxRate_SKE.Location = new System.Drawing.Point(180, 68);
+            this.textBoxStatMaxRate_SKE.Location = new System.Drawing.Point(179, 55);
             this.textBoxStatMaxRate_SKE.Name = "textBoxStatMaxRate_SKE";
             this.textBoxStatMaxRate_SKE.ReadOnly = true;
             this.textBoxStatMaxRate_SKE.Size = new System.Drawing.Size(87, 20);
@@ -269,7 +284,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             // 
             // textBoxStatCnt_SKE
             // 
-            this.textBoxStatCnt_SKE.Location = new System.Drawing.Point(180, 39);
+            this.textBoxStatCnt_SKE.Location = new System.Drawing.Point(179, 26);
             this.textBoxStatCnt_SKE.Name = "textBoxStatCnt_SKE";
             this.textBoxStatCnt_SKE.ReadOnly = true;
             this.textBoxStatCnt_SKE.Size = new System.Drawing.Size(87, 20);
@@ -278,7 +293,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             // labelStatCnt_SKE
             // 
             this.labelStatCnt_SKE.AutoSize = true;
-            this.labelStatCnt_SKE.Location = new System.Drawing.Point(7, 42);
+            this.labelStatCnt_SKE.Location = new System.Drawing.Point(6, 29);
             this.labelStatCnt_SKE.Name = "labelStatCnt_SKE";
             this.labelStatCnt_SKE.Size = new System.Drawing.Size(132, 13);
             this.labelStatCnt_SKE.TabIndex = 0;
@@ -287,7 +302,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             // labelStatMinRate_SKE
             // 
             this.labelStatMinRate_SKE.AutoSize = true;
-            this.labelStatMinRate_SKE.Location = new System.Drawing.Point(7, 100);
+            this.labelStatMinRate_SKE.Location = new System.Drawing.Point(6, 87);
             this.labelStatMinRate_SKE.Name = "labelStatMinRate_SKE";
             this.labelStatMinRate_SKE.Size = new System.Drawing.Size(126, 13);
             this.labelStatMinRate_SKE.TabIndex = 0;
@@ -296,7 +311,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             // labelStatMaxRate_SKE
             // 
             this.labelStatMaxRate_SKE.AutoSize = true;
-            this.labelStatMaxRate_SKE.Location = new System.Drawing.Point(7, 71);
+            this.labelStatMaxRate_SKE.Location = new System.Drawing.Point(6, 58);
             this.labelStatMaxRate_SKE.Name = "labelStatMaxRate_SKE";
             this.labelStatMaxRate_SKE.Size = new System.Drawing.Size(132, 13);
             this.labelStatMaxRate_SKE.TabIndex = 0;
@@ -305,7 +320,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             // labelStatTimeDuration_SKE
             // 
             this.labelStatTimeDuration_SKE.AutoSize = true;
-            this.labelStatTimeDuration_SKE.Location = new System.Drawing.Point(6, 216);
+            this.labelStatTimeDuration_SKE.Location = new System.Drawing.Point(5, 203);
             this.labelStatTimeDuration_SKE.Name = "labelStatTimeDuration_SKE";
             this.labelStatTimeDuration_SKE.Size = new System.Drawing.Size(165, 13);
             this.labelStatTimeDuration_SKE.TabIndex = 0;
@@ -314,7 +329,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             // labelTimeClose_SKE
             // 
             this.labelTimeClose_SKE.AutoSize = true;
-            this.labelTimeClose_SKE.Location = new System.Drawing.Point(6, 187);
+            this.labelTimeClose_SKE.Location = new System.Drawing.Point(5, 174);
             this.labelTimeClose_SKE.Name = "labelTimeClose_SKE";
             this.labelTimeClose_SKE.Size = new System.Drawing.Size(140, 13);
             this.labelTimeClose_SKE.TabIndex = 0;
@@ -323,7 +338,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             // labelTimeOpen_SKE
             // 
             this.labelTimeOpen_SKE.AutoSize = true;
-            this.labelTimeOpen_SKE.Location = new System.Drawing.Point(6, 158);
+            this.labelTimeOpen_SKE.Location = new System.Drawing.Point(5, 145);
             this.labelTimeOpen_SKE.Name = "labelTimeOpen_SKE";
             this.labelTimeOpen_SKE.Size = new System.Drawing.Size(133, 13);
             this.labelTimeOpen_SKE.TabIndex = 0;
@@ -332,7 +347,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             // labelStatAverageRate_SKE
             // 
             this.labelStatAverageRate_SKE.AutoSize = true;
-            this.labelStatAverageRate_SKE.Location = new System.Drawing.Point(6, 129);
+            this.labelStatAverageRate_SKE.Location = new System.Drawing.Point(5, 116);
             this.labelStatAverageRate_SKE.Name = "labelStatAverageRate_SKE";
             this.labelStatAverageRate_SKE.Size = new System.Drawing.Size(96, 13);
             this.labelStatAverageRate_SKE.TabIndex = 0;
@@ -349,74 +364,87 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             this.groupBoxSort_SKE.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBoxSort_SKE.Location = new System.Drawing.Point(0, 162);
             this.groupBoxSort_SKE.Name = "groupBoxSort_SKE";
-            this.groupBoxSort_SKE.Size = new System.Drawing.Size(202, 264);
+            this.groupBoxSort_SKE.Size = new System.Drawing.Size(202, 232);
             this.groupBoxSort_SKE.TabIndex = 2;
             this.groupBoxSort_SKE.TabStop = false;
             this.groupBoxSort_SKE.Text = "Сортировка по";
             // 
             // buttonSortName_SKE
             // 
+            this.buttonSortName_SKE.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonSortName_SKE.Enabled = false;
-            this.buttonSortName_SKE.Location = new System.Drawing.Point(24, 187);
+            this.buttonSortName_SKE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSortName_SKE.Location = new System.Drawing.Point(25, 174);
             this.buttonSortName_SKE.Name = "buttonSortName_SKE";
             this.buttonSortName_SKE.Size = new System.Drawing.Size(148, 23);
             this.buttonSortName_SKE.TabIndex = 0;
             this.buttonSortName_SKE.Text = "Названию";
-            this.buttonSortName_SKE.UseVisualStyleBackColor = true;
+            this.buttonSortName_SKE.UseVisualStyleBackColor = false;
+            this.buttonSortName_SKE.Click += new System.EventHandler(this.buttonSortName_SKE_Click);
             // 
             // buttonSortClose_SKE
             // 
+            this.buttonSortClose_SKE.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonSortClose_SKE.Enabled = false;
-            this.buttonSortClose_SKE.Location = new System.Drawing.Point(24, 158);
+            this.buttonSortClose_SKE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSortClose_SKE.Location = new System.Drawing.Point(25, 145);
             this.buttonSortClose_SKE.Name = "buttonSortClose_SKE";
             this.buttonSortClose_SKE.Size = new System.Drawing.Size(148, 23);
             this.buttonSortClose_SKE.TabIndex = 0;
             this.buttonSortClose_SKE.Text = "Времени закрытия";
-            this.buttonSortClose_SKE.UseVisualStyleBackColor = true;
+            this.buttonSortClose_SKE.UseVisualStyleBackColor = false;
             this.buttonSortClose_SKE.Click += new System.EventHandler(this.buttonSortClose_SKE_Click);
             // 
             // buttonSortOpen_SKE
             // 
+            this.buttonSortOpen_SKE.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonSortOpen_SKE.Enabled = false;
-            this.buttonSortOpen_SKE.Location = new System.Drawing.Point(24, 129);
+            this.buttonSortOpen_SKE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSortOpen_SKE.Location = new System.Drawing.Point(25, 116);
             this.buttonSortOpen_SKE.Name = "buttonSortOpen_SKE";
             this.buttonSortOpen_SKE.Size = new System.Drawing.Size(148, 23);
             this.buttonSortOpen_SKE.TabIndex = 0;
             this.buttonSortOpen_SKE.Text = "Времени открытия";
-            this.buttonSortOpen_SKE.UseVisualStyleBackColor = true;
+            this.buttonSortOpen_SKE.UseVisualStyleBackColor = false;
             this.buttonSortOpen_SKE.Click += new System.EventHandler(this.buttonSortOpen_SKE_Click);
             // 
             // buttonSortTime_SKE
             // 
+            this.buttonSortTime_SKE.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonSortTime_SKE.Enabled = false;
-            this.buttonSortTime_SKE.Location = new System.Drawing.Point(24, 100);
+            this.buttonSortTime_SKE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSortTime_SKE.Location = new System.Drawing.Point(25, 87);
             this.buttonSortTime_SKE.Name = "buttonSortTime_SKE";
             this.buttonSortTime_SKE.Size = new System.Drawing.Size(148, 23);
             this.buttonSortTime_SKE.TabIndex = 0;
             this.buttonSortTime_SKE.Text = "Времени работы";
-            this.buttonSortTime_SKE.UseVisualStyleBackColor = true;
+            this.buttonSortTime_SKE.UseVisualStyleBackColor = false;
             this.buttonSortTime_SKE.Click += new System.EventHandler(this.buttonSortTime_SKE_Click);
             // 
             // buttonSortNum_SKE
             // 
+            this.buttonSortNum_SKE.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonSortNum_SKE.Enabled = false;
-            this.buttonSortNum_SKE.Location = new System.Drawing.Point(24, 42);
+            this.buttonSortNum_SKE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSortNum_SKE.Location = new System.Drawing.Point(25, 29);
             this.buttonSortNum_SKE.Name = "buttonSortNum_SKE";
             this.buttonSortNum_SKE.Size = new System.Drawing.Size(148, 23);
             this.buttonSortNum_SKE.TabIndex = 0;
             this.buttonSortNum_SKE.Text = "Номеру п/п";
-            this.buttonSortNum_SKE.UseVisualStyleBackColor = true;
+            this.buttonSortNum_SKE.UseVisualStyleBackColor = false;
             this.buttonSortNum_SKE.Click += new System.EventHandler(this.buttonSortNum_SKE_Click);
             // 
             // buttonSortRate_SKE
             // 
+            this.buttonSortRate_SKE.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonSortRate_SKE.Enabled = false;
-            this.buttonSortRate_SKE.Location = new System.Drawing.Point(24, 71);
+            this.buttonSortRate_SKE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSortRate_SKE.Location = new System.Drawing.Point(25, 58);
             this.buttonSortRate_SKE.Name = "buttonSortRate_SKE";
             this.buttonSortRate_SKE.Size = new System.Drawing.Size(148, 23);
             this.buttonSortRate_SKE.TabIndex = 0;
             this.buttonSortRate_SKE.Text = "Рейтингу";
-            this.buttonSortRate_SKE.UseVisualStyleBackColor = true;
+            this.buttonSortRate_SKE.UseVisualStyleBackColor = false;
             this.buttonSortRate_SKE.Click += new System.EventHandler(this.buttonSortRate_SKE_Click);
             // 
             // groupBoxDelete_SKE
@@ -434,13 +462,15 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             // 
             // buttonDelete_SKE
             // 
+            this.buttonDelete_SKE.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonDelete_SKE.Enabled = false;
-            this.buttonDelete_SKE.Location = new System.Drawing.Point(362, 29);
+            this.buttonDelete_SKE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDelete_SKE.Image = ((System.Drawing.Image)(resources.GetObject("buttonDelete_SKE.Image")));
+            this.buttonDelete_SKE.Location = new System.Drawing.Point(413, 12);
             this.buttonDelete_SKE.Name = "buttonDelete_SKE";
-            this.buttonDelete_SKE.Size = new System.Drawing.Size(75, 23);
+            this.buttonDelete_SKE.Size = new System.Drawing.Size(75, 44);
             this.buttonDelete_SKE.TabIndex = 2;
-            this.buttonDelete_SKE.Text = "buttonDelete";
-            this.buttonDelete_SKE.UseVisualStyleBackColor = true;
+            this.buttonDelete_SKE.UseVisualStyleBackColor = false;
             this.buttonDelete_SKE.Click += new System.EventHandler(this.buttonDelete_SKE_Click);
             // 
             // textBoxDeleteNum_SKE
@@ -482,13 +512,15 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             // 
             // buttonAdd_SKE
             // 
+            this.buttonAdd_SKE.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonAdd_SKE.Enabled = false;
-            this.buttonAdd_SKE.Location = new System.Drawing.Point(362, 70);
+            this.buttonAdd_SKE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAdd_SKE.Image = ((System.Drawing.Image)(resources.GetObject("buttonAdd_SKE.Image")));
+            this.buttonAdd_SKE.Location = new System.Drawing.Point(413, 50);
             this.buttonAdd_SKE.Name = "buttonAdd_SKE";
-            this.buttonAdd_SKE.Size = new System.Drawing.Size(75, 23);
+            this.buttonAdd_SKE.Size = new System.Drawing.Size(75, 44);
             this.buttonAdd_SKE.TabIndex = 2;
-            this.buttonAdd_SKE.Text = "buttonAdd";
-            this.buttonAdd_SKE.UseVisualStyleBackColor = true;
+            this.buttonAdd_SKE.UseVisualStyleBackColor = false;
             this.buttonAdd_SKE.Click += new System.EventHandler(this.buttonAdd_SKE_Click);
             // 
             // labelAddRate_SKE
@@ -542,6 +574,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             this.textBoxAddRate_SKE.Name = "textBoxAddRate_SKE";
             this.textBoxAddRate_SKE.Size = new System.Drawing.Size(100, 20);
             this.textBoxAddRate_SKE.TabIndex = 0;
+            this.textBoxAddRate_SKE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxAddRate_SKE_KeyPress);
             // 
             // textBoxAddClose_SKE
             // 
@@ -549,6 +582,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             this.textBoxAddClose_SKE.Name = "textBoxAddClose_SKE";
             this.textBoxAddClose_SKE.Size = new System.Drawing.Size(100, 20);
             this.textBoxAddClose_SKE.TabIndex = 0;
+            this.textBoxAddClose_SKE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxAddClose_SKE_KeyPress);
             // 
             // textBoxAddPhone_SKE
             // 
@@ -556,6 +590,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             this.textBoxAddPhone_SKE.Name = "textBoxAddPhone_SKE";
             this.textBoxAddPhone_SKE.Size = new System.Drawing.Size(100, 20);
             this.textBoxAddPhone_SKE.TabIndex = 0;
+            this.textBoxAddPhone_SKE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxAddPhone_SKE_KeyPress);
             // 
             // textBoxAddOpen_SKE
             // 
@@ -563,6 +598,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             this.textBoxAddOpen_SKE.Name = "textBoxAddOpen_SKE";
             this.textBoxAddOpen_SKE.Size = new System.Drawing.Size(100, 20);
             this.textBoxAddOpen_SKE.TabIndex = 0;
+            this.textBoxAddOpen_SKE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxAddOpen_SKE_KeyPress);
             // 
             // textBoxAddName_SKE
             // 
@@ -570,6 +606,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             this.textBoxAddName_SKE.Name = "textBoxAddName_SKE";
             this.textBoxAddName_SKE.Size = new System.Drawing.Size(100, 20);
             this.textBoxAddName_SKE.TabIndex = 0;
+            this.textBoxAddName_SKE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxAddName_SKE_KeyPress);
             // 
             // panelGraph_SKE
             // 
@@ -577,7 +614,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             this.panelGraph_SKE.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelGraph_SKE.Location = new System.Drawing.Point(494, 65);
             this.panelGraph_SKE.Name = "panelGraph_SKE";
-            this.panelGraph_SKE.Size = new System.Drawing.Size(607, 426);
+            this.panelGraph_SKE.Size = new System.Drawing.Size(465, 394);
             this.panelGraph_SKE.TabIndex = 3;
             // 
             // groupBoxGraph_SKE
@@ -586,26 +623,30 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             this.groupBoxGraph_SKE.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxGraph_SKE.Location = new System.Drawing.Point(0, 0);
             this.groupBoxGraph_SKE.Name = "groupBoxGraph_SKE";
-            this.groupBoxGraph_SKE.Size = new System.Drawing.Size(607, 426);
+            this.groupBoxGraph_SKE.Size = new System.Drawing.Size(465, 394);
             this.groupBoxGraph_SKE.TabIndex = 0;
             this.groupBoxGraph_SKE.TabStop = false;
             this.groupBoxGraph_SKE.Text = "График";
             // 
             // chartGraph_SKE
             // 
-            chartArea8.Name = "ChartArea1";
-            this.chartGraph_SKE.ChartAreas.Add(chartArea8);
+            chartArea1.Name = "ChartArea1";
+            this.chartGraph_SKE.ChartAreas.Add(chartArea1);
             this.chartGraph_SKE.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend8.Name = "Legend1";
-            this.chartGraph_SKE.Legends.Add(legend8);
+            legend1.Name = "Legend1";
+            this.chartGraph_SKE.Legends.Add(legend1);
             this.chartGraph_SKE.Location = new System.Drawing.Point(3, 16);
             this.chartGraph_SKE.Name = "chartGraph_SKE";
-            series8.ChartArea = "ChartArea1";
-            series8.IsVisibleInLegend = false;
-            series8.Legend = "Legend1";
-            series8.Name = "Series1";
-            this.chartGraph_SKE.Series.Add(series8);
-            this.chartGraph_SKE.Size = new System.Drawing.Size(601, 407);
+            this.chartGraph_SKE.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
+            series1.ChartArea = "ChartArea1";
+            series1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            series1.IsVisibleInLegend = false;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.chartGraph_SKE.Series.Add(series1);
+            this.chartGraph_SKE.Size = new System.Drawing.Size(459, 375);
             this.chartGraph_SKE.TabIndex = 0;
             this.chartGraph_SKE.Text = "chart1";
             // 
@@ -617,12 +658,12 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1101, 662);
+            this.ClientSize = new System.Drawing.Size(959, 662);
             this.Controls.Add(this.panelGraph_SKE);
             this.Controls.Add(this.panelOptions_SKE);
             this.Controls.Add(this.panelFile_SKE);
             this.Controls.Add(this.panelUp_SKE);
-            this.MinimumSize = new System.Drawing.Size(965, 700);
+            this.MinimumSize = new System.Drawing.Size(975, 700);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Авторемонтные мастерские";
@@ -699,6 +740,7 @@ namespace Tyuiu.ShunanovKE.Sprint7.Project.V1
         private System.Windows.Forms.Label labelStatTimeDuration_SKE;
         private System.Windows.Forms.Button buttonSortName_SKE;
         private System.Windows.Forms.Button buttonSortNum_SKE;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogFile_SKE;
     }
 }
 
